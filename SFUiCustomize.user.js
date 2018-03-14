@@ -1,11 +1,11 @@
-// ==UserScript==
+﻿// ==UserScript==
 // @name         SFUiCustomize
 // @namespace    https://github.com/rauchi07
 // @description  SalesForceClassicのUIカスタマイズ
 // @include https://*.salesforce.com/*
 // @include https://*.force.com/*
 // ==/UserScript==
-
+//aaaa
 var thisPageUrl    = location.href;
 
 //本スクリプトのエラーで元のページの処理をとめないようにする
