@@ -1,3 +1,9 @@
+// ==UserScript==
+// @name            Sample Script with jQuery
+// @namespace      https://github.com/rauchi07
+// @description  This is a sample script by ENTEREAL LLP
+// ==/UserScript==
+
 var thisPageUrl    = location.href;
 
 //本スクリプトのエラーで元のページの処理をとめないようにする
