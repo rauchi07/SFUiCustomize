@@ -1,7 +1,9 @@
 // ==UserScript==
-// @name            Sample Script with jQuery
-// @namespace      https://github.com/rauchi07
-// @description  This is a sample script by ENTEREAL LLP
+// @name         SFUiCustomize
+// @namespace    https://github.com/rauchi07
+// @description  SalesForceClassicのUIカスタマイズ
+// @include https://*.salesforce.com
+// @include https://*.force.com
 // ==/UserScript==
 
 var thisPageUrl    = location.href;
