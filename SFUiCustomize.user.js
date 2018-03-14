@@ -2,8 +2,8 @@
 // @name         SFUiCustomize
 // @namespace    https://github.com/rauchi07
 // @description  SalesForceClassicのUIカスタマイズ
-// @include https://*.salesforce.com
-// @include https://*.force.com
+// @include https://*.salesforce.com/*
+// @include https://*.force.com/*
 // ==/UserScript==
 
 var thisPageUrl    = location.href;
