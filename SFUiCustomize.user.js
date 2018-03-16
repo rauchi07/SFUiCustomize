@@ -5,7 +5,7 @@
 // @include https://*.salesforce.com/*
 // @include https://*.force.com/*
 // ==/UserScript==
-//aaaa
+
 var thisPageUrl    = location.href;
 
 //本スクリプトのエラーで元のページの処理をとめないようにする
@@ -145,7 +145,6 @@ function applyShortcutKeys(){
 	setAccessKey('goPrevious','p');
 	// 保存キーへショートカットをセット
 	setAccessKey('save','s');
-
 	// 保存＆次へもN
 	setAccessKey('save_new','n');
 
@@ -227,46 +226,46 @@ function applyHenkoSetPageCustom(){
 
 
 
-//とちゅう(たぶんセッションIDがちがう)
-function delbuttonAdd(){
-	var pageId    = thisPageUrl.replace('https://','');
-	var pageUrls  = pageId.split('/');
-	var pageUrls2 = pageUrls[1].split('?');
-	pageId        = pageUrls2[0];
-	var delUrl    = '/setup/own/deleteredirect.jsp?' +
-	'setupid=CustomObjects'+
-	'&delID=' + pageId+
-	// '&retURL=%2F01IN00000009Yn7%3Fsetupid%3DCustomObjects'+
-	'&_CONFIRMATIONTOKEN=' + getSessionId();
-	createCustomLink(document.getElementById('topButtonRow'),delUrl,'削除','_self');
-	//セッションID取得
-	function getSessionId(){
-		var sid = document.cookie.substring(
-		  document.cookie.indexOf("=",document.cookie.indexOf("sid=")) + 1,
-		  document.cookie.indexOf(";",document.cookie.indexOf("sid="))
-		);
-		return sid;
-	}
+// //とちゅう(たぶんセッションIDがちがう)
+// function delbuttonAdd(){
+// 	var pageId    = thisPageUrl.replace('https://','');
+// 	var pageUrls  = pageId.split('/');
+// 	var pageUrls2 = pageUrls[1].split('?');
+// 	pageId        = pageUrls2[0];
+// 	var delUrl    = '/setup/own/deleteredirect.jsp?' +
+// 	'setupid=CustomObjects'+
+// 	'&delID=' + pageId+
+// 	// '&retURL=%2F01IN00000009Yn7%3Fsetupid%3DCustomObjects'+
+// 	'&_CONFIRMATIONTOKEN=' + getSessionId();
+// 	createCustomLink(document.getElementById('topButtonRow'),delUrl,'削除','_self');
+// 	//セッションID取得
+// 	function getSessionId(){
+// 		var sid = document.cookie.substring(
+// 		  document.cookie.indexOf("=",document.cookie.indexOf("sid=")) + 1,
+// 		  document.cookie.indexOf(";",document.cookie.indexOf("sid="))
+// 		);
+// 		return sid;
+// 	}
 
 
-	/**
-	 * リンク作成
-	 * @param  {[type]} palentEle [description]
-	 * @param  {[type]} url       [description]
-	 * @param  {[type]} title     [description]
-	 * @param  {[type]} target    [description]
-	 * @return {[type]}           [description]
-	 */
-	function createCustomLink(palentEle,url,title,target) {
-		console.log('createCustomLink');
-		var ele       = document.createElement("a");
-		ele.href      = url;
-		ele.innerText = '■' + title;
-		ele.target    = target;
-		ele.style     = 'margin-right:5px'
-		palentEle.appendChild(ele);
-	}
-}
+// 	/**
+// 	 * リンク作成
+// 	 * @param  {[type]} palentEle [description]
+// 	 * @param  {[type]} url       [description]
+// 	 * @param  {[type]} title     [description]
+// 	 * @param  {[type]} target    [description]
+// 	 * @return {[type]}           [description]
+// 	 */
+// 	function createCustomLink(palentEle,url,title,target) {
+// 		console.log('createCustomLink');
+// 		var ele       = document.createElement("a");
+// 		ele.href      = url;
+// 		ele.innerText = '■' + title;
+// 		ele.target    = target;
+// 		ele.style     = 'margin-right:5px'
+// 		palentEle.appendChild(ele);
+// 	}
+// }
 
 
 
@@ -321,14 +320,8 @@ return new Promise(function(resolve, reject) {
 function addCssRules(){
 	//レポート用cssカスタマイズ
 	if ( (thisPageUrl.indexOf('LayoutMappingUI') == -1) ) {
-
-
-
-
 		var scr    = document.createElement('style');
 		scr.type   = "text/css";
-
-
 
 		scr.onload = function(){
 			var addRule =  "table.reportTable tr:hover td";
@@ -353,25 +346,25 @@ function addCssRules(){
 	}
 }
 
-/**
- * ヘッダ固定：何をしようとしていたか思い出せない
- */
-function addFixedHeaderTable(){
-	var scr    = document.createElement("script");
-	scr.src    = "//cdnjs.cloudflare.com/ajax/libs/fixed-header-table/1.3.0/jquery.fixedheadertable.min.js";
-	scr.onload = function(){
-		console.log('addFixedHeaderTable-onload');
-		try{
-			// setTimeout(salesforceCustomProc(),0);
-		}catch(e){
-			console.log('addFixedHeaderTable適用エラー',e)
-		}
-	}
-	document.body.appendChild(scr);
-}
+// /**
+//  * ヘッダ固定：何をしようとしていたか思い出せない
+//  */
+// function addFixedHeaderTable(){
+// 	var scr    = document.createElement("script");
+// 	scr.src    = "//cdnjs.cloudflare.com/ajax/libs/fixed-header-table/1.3.0/jquery.fixedheadertable.min.js";
+// 	scr.onload = function(){
+// 		console.log('addFixedHeaderTable-onload');
+// 		try{
+// 			// setTimeout(salesforceCustomProc(),0);
+// 		}catch(e){
+// 			console.log('addFixedHeaderTable適用エラー',e)
+// 		}
+// 	}
+// 	document.body.appendChild(scr);
+// }
 
 /**
- * いろんなショートカットの追加
+* 詳細ページ、編集ページに設定画面へのリンク追加
  */
 function setSettingPageLink(){
 	//デフォルト、フィードベース、編集ページ対応
@@ -384,8 +377,8 @@ function setSettingPageLink(){
 		// console.log(this);
 	})
 
+	//例外対応（stosページへの対応）
 	if(thisPageUrl.indexOf('PublishFieldsUi') != -1){
-		//例外対応（stosページへの対応）
 		//デフォルト、フィードベース、編集ページ対応
 		// alert(1);
 		jQuery('td.dataCol').each(function(index){
