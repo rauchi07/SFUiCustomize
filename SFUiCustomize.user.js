@@ -132,6 +132,9 @@ function salesforceCustomProc(){
 	// 全選択チェックボックス処理上書き
 	overwriteAllSelectCheckBox();
 
+	// aaa
+	formCopyButtonAdd();
+
 }
 
 /**
@@ -628,5 +631,48 @@ function hideCol(obj){
 
 	});
 	console.log(tdEle);
+
+}
+
+var tableSelectionFlg = false;
+// ココがポイントjavascript
+function selectDomElm(obj){
+	// Rangeオブジェクトの取得
+	// Selectionオブジェクトを返す。ユーザが選択した範囲が格納されている
+	var selection = window.getSelection();
+	// 選択をすべてクリア
+	selection.removeAllRanges();
+	if(!tableSelectionFlg){
+		var range = document.createRange();
+		// range.selectNodeContents(this);
+		range.selectNode(obj);
+		selection.addRange(range);
+	}
+
+}
+
+
+/**
+ * jQuery quick search適用処理
+ * @return {[type]} [description]
+ */
+function formCopyButtonAdd(){
+	var targetTableLength = 0;	//テーブルが～行以上のときだけ適用する。（-1の場合制限なし）
+	// jqs適用のためのクラスを追加
+	// var targetInd = 0;
+	var selector       = 'form';								//関連リスト等
+	var targetChildren = 'tbody tr:not(.headerRow)';						//table用
+	targetChildren     += ',option';										//selectbox用
+
+	//テーブルを検索して検索欄を挿入
+	jQuery(selector).each(function(index){
+
+		var targetEle      = jQuery(this);
+
+		var addEleStr = ''
+		// addEleStr     += '<button type="button" onclick="selectDomElm(jQuery(\'table.'+ jqsClassName + '\')[0])">select</button></div>';
+		addEleStr     += '<div><button type="button" onclick="">copy</button></div>';
+		targetEle.before(addEleStr);	//コピーボタン追加
+	})
 
 }
